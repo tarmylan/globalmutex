@@ -36,7 +36,7 @@ func (p *MutexManager) rLock(key string) {
 }
 
 func (p *MutexManager) rUnlock(key string) {
-	p.gm.RUnlock()
+	p.gm.RUnlock(key)
 }
 
 func (p *MutexManager) execute(key string, f func()) {

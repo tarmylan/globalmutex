@@ -56,8 +56,8 @@ func (l *locker) put(key interface{}, m *mutex) {
 
 func (l *locker) get(key interface{}) *mutex {
 	res, _ := l.inUse.LoadOrStore(key, &mutex{
-		ref:    0,
-		locker: l.pool.Get().(*sync.RWMutex),
+		ref: 0,
+		mu:  l.pool.Get().(*sync.RWMutex),
 	})
 
 	return res.(*mutex)
