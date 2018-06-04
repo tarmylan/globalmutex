@@ -17,8 +17,8 @@ func main() {
 
     // lock the user and do sth.
     globalmutex.Lock(user.Id)
-    defer globalmutex.Unlock(user.Id)
     // TODO ...
+    globalmutex.Unlock(user.Id)
 
     // OR
     globalmutex.LockDo(user.Id, func() {
