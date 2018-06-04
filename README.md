@@ -4,7 +4,7 @@
 package main
 
 import (
-  log "github.com/tarmylan/globalmutex"
+    "github.com/tarmylan/globalmutex"
 )
 
 type User struct {
