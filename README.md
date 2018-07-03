@@ -8,20 +8,26 @@ import (
 )
 
 type User struct {
-    Id int
+    Id  int
+    Key string
     // ...
+}
+
+func (p *User) init() {
+    p.Key = fmt.Sprintf("user_%v", p.Id)
 }
 
 func main() {
     user := &User{1}
+    user.init()
 
-    // lock the user and do sth.
-    globalmutex.Lock(user.Id)
+    // lock the user and do sth. and unlock it after work done
+    globalmutex.Lock(user.Key)
     // TODO ...
-    globalmutex.Unlock(user.Id)
+    globalmutex.Unlock(user.Key)
 
     // OR
-    globalmutex.LockDo(user.Id, func() {
+    globalmutex.LockDo(user.Key, func() {
         // TODO ...
     })
 }
