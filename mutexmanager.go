@@ -23,44 +23,44 @@ func (p *MutexManager) init() {
 	p.gm = NewGlobalMutex()
 }
 
-func (p *MutexManager) lock(key string) {
+func (p *MutexManager) lock(key interface{}) {
 	p.gm.Lock(key)
 }
 
-func (p *MutexManager) unlock(key string) {
+func (p *MutexManager) unlock(key interface{}) {
 	p.gm.Unlock(key)
 }
 
-func (p *MutexManager) rLock(key string) {
+func (p *MutexManager) rLock(key interface{}) {
 	p.gm.RLock(key)
 }
 
-func (p *MutexManager) rUnlock(key string) {
+func (p *MutexManager) rUnlock(key interface{}) {
 	p.gm.RUnlock(key)
 }
 
-func (p *MutexManager) execute(key string, f func()) {
+func (p *MutexManager) execute(key interface{}, f func()) {
 	p.gm.Lock(key)
 	defer p.gm.Unlock(key)
 	f()
 }
 
-func Lock(key string) {
+func Lock(key interface{}) {
 	_global_mutex_manager.lock(key)
 }
 
-func Unlock(key string) {
+func Unlock(key interface{}) {
 	_global_mutex_manager.unlock(key)
 }
 
-func RLock(key string) {
+func RLock(key interface{}) {
 	_global_mutex_manager.rLock(key)
 }
 
-func RUnlock(key string) {
+func RUnlock(key interface{}) {
 	_global_mutex_manager.rUnlock(key)
 }
 
-func LockDo(key string, f func()) {
+func LockDo(key interface{}, f func()) {
 	_global_mutex_manager.execute(key, f)
 }
